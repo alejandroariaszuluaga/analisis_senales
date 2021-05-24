@@ -1,0 +1,97 @@
+\documentclass[11pt,spanish]{article}
+%\documentclass[5p,twocolumn,10pt,authoryear]{elsarticle}
+
+
+\usepackage{times}
+\usepackage[ansinew]{inputenc}
+\usepackage{color}
+\usepackage{anysize}\marginsize{1.7cm}{1.7cm}{2.0cm}{2.0cm}
+\usepackage{setspace}
+
+\usepackage{graphicx}
+\usepackage{epsfig}
+%\usepackage[caption=false,font=footnotesize]{subfig}
+
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{bm}
+\usepackage{mathrsfs}
+
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{enumitem}
+
+\usepackage[T1]{fontenc}
+\usepackage{selinput}
+\SelectInputMappings{%
+  aacute={á},
+  ntilde={ñ},
+  Euro={€}
+}
+\usepackage{babel}
+
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+
+\begin{flushleft}
+\bf\large Tarea 3\\
+\bf\large IELE-4017  Análisis Inteligente de Señales y Sistemas \\
+\bf\large Profesor: Luis Felipe Giraldo Trujillo\\
+\bf\large 2021-I
+\end{flushleft}
+
+
+
+\noindent
+%\today
+%\hfill
+
+
+\noindent
+\rule{\textwidth}{1pt}
+
+\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% body of scribe notes goes here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{enumerate}
+       \item (33 puntos) El archivo \texttt{borgesRuido.wav} contiene una señal de voz contaminada con un ruido del tipo sinusoidal.
+          \begin{enumerate}[label=\textbf{\Alph*)},ref=\Alph*,leftmargin=*]
+           \item[a)] Grafique la señal de voz contra el tiempo, y el espectro de frecuencia de la señal contra frecuencia en Hz, y determine cuál es la frecuencia del ruido.
+           \item[b)] Diseñe un filtro tipo FIR por el método de las ventanas visto en clase que permita remover dicho ruido utilizando las ecuaciones vistas en clase, y que trate de no dañar la señal de audio. No puede utilizar algún software o funciones preestablecidas para el diseño del filtro. Grafique los coeficientes del filtro contra $n$, donde $n=0,\ldots N=30$ ($N$ es el orden del filtro), y la respuesta en frecuencia del filtro contra $f$ en Hz, donde $-\frac{f_s}{2}\le f\le \frac{f_s}{2}$  ($f_s$ es la frecuencia de muestreo). Para esta última gráfica puede utilizar la función \texttt{espectro.m}.
+           \item[c)] Escriba una rutina que implemente la ecuación de diferencias asociada a un filtro FIR, dada por
+           \[
+           y[n]=\sum_{k=0}^{N} b_k x[n-k]
+           \]
+           para una señal de entrada $x[n]$ con un número de muestras finita. Asuma que $x[n]=0$ para valores de $n<0$. Los coeficientes $b_k$ son los diseñados en el enunciado b). Filtre la señal de voz utilizando esta rutina. Grafique la señal de voz filtrada contra tiempo, y el espectro de frecuencia de la señal filtrada contra la frecuencia en Hz. Compare con los resultados obtenidos en a).
+           \item[d)] Escuche la señal de voz filtrada utilizando la función de Matlab \texttt{soundsc} y compárelo con el original.
+           \item[e)] Repita el procedmiento en b), c), y d) para $N=80$ y $N=300$.
+      \end{enumerate}
+      \vspace{1cm}
+\item (33 puntos) Considere el sistema discreto
+  \[
+     y[n]=x[n]+\beta y[n-N]
+  \]
+  para $n=\mathbb{Z}$, un corrimiento $N>0$, y una constante $\beta\in \mathbb{R}$.
+      \begin{enumerate}[label=\textbf{\Alph*)},ref=\Alph*,leftmargin=*]
+        \item[a)] Encuentre la función de transferencia $H(z)=Y(z)/X(z)$. Asumiendo que $\beta\ge0$, encuentre aquellos casos donde el sistema es inestable.
+        \item[b)] Grabe su voz en un archivo de audio monoaural. El hecho de que sea monoaural le va a facilitar el análisis. Escriba una rutina que implemente la ecuación de diferencias para $N=150$. Asuma que $y[n]=0$ para valores de $n<0$. Cargue la señal de audio y utilícela como señal de entrada del sistema discreto (es decir, $x$). Escuche la señal de salida del sistema para cada uno de los siguientes casos: $\beta=0.7$, $\beta=0.9$, y $\beta=1.1$. ¿Cuál es el efecto resultante, y a qué se debe?. Si el sistema se vuelve inestable, ¿cuándo sucede esto? Realice el análisis apoyándose en los resultados obtenidos en b).
+        \item[c)] Analice el efecto de $N$ sobre la salida $y[n]$.
+      \end{enumerate}
+      \vspace{1cm}
+      \item (34 puntos) La dirección nacional de inteligencia interceptó el envío de informacion codificada en el archivo \texttt{codificado.wav}. Este es un audio monoaural que contiene varios mensajes de voz codificados, posiblemente a través de modulación de amplitud. Decodifique los mensajes. Explique brevemente cada paso realizado para decodificar los mensajes (incluyedo las gráficas en tiempo y frecuencia obtenidas en cada paso).\\
+          \emph{Para tener en cuenta:} Revise los conceptos de modulación de amplitud vistos en clase. El rango de frecuencias de la voz grabada no supera los 5kHz. No puede usar funciones preestablecidas para modulación/demodulación de amplitud.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+ \end{document} 
